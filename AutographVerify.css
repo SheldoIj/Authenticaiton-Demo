@@ -83,7 +83,7 @@ table td { padding-left: 1em; }
 
 #login {
 	display: inline-block;
-	float:left;
+	/*float:left;*/
 	color: red;
 	padding-left: 20px;
 	padding-top: 20px;
@@ -97,7 +97,6 @@ table td { padding-left: 1em; }
 	padding-right:20px;
 	padding-top:20px;
 	color: red;
-	/*display:none;*/
 }
 #logoutMes {
 	text-align: center;
@@ -108,5 +107,5 @@ table td { padding-left: 1em; }
 	padding:50px;
 }
 #nameTemplate {
-	/*display:none;*/
+    padding: 8px;
 }

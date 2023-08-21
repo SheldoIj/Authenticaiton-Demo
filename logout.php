@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+<?php
+    setcookie('user', '', -1, '/'); 
+?>
+
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Shop Verified Items</title>
@@ -19,12 +23,11 @@
 				</ul>
 			</nav>
 			<div id="logoutMes">
-				<h1>You have been successfully logged out!</h1>
+				<h1>You have been successfully logged out!
+				Cookie Deleted
+				Connection Closed</h1>
 			</div>
-			<?php
-				mysqli_close($dbc);
-				echo '<script>alert("Connection Closed.")</script>';
-			?>
+
 		<footer>
 			Copyright &copy; 2023 HorrorHound Weekend<br /><a href="mailto:support@horrorhound.com">support@horrorhound.com</a><br>
 			<br>Follow Us If you want to be kept up to date about what’s<br> going on, minute by minute, then search for Grant and give us a follow!<br>

@@ -1,28 +1,21 @@
+<?php
+    $cookie_name = "user";
+    $cookie_value = $_POST["username"];
+    setcookie($cookie_name,$cookie_value,time()+86400,"/");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Shop Verified Items</title>
+        <title>Creation Page</title>
         <link rel="stylesheet" href="AutographVerify.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 	<body>
         <div id="wrapper">
-			<header>
-			<div id="nameTemplate">
-				<?php
-					if (isset($_COOKIE["user"]))
-					{
-						echo "Welcome " . $_COOKIE["user"];
-						echo ' <a id="logout" href="logout.php">Logout</a>';
-					}
-					else
-					{
-						echo '<a id="login" href="login.php">Login</a>';
-					}
-				?>
-			</div>
-			<h1 id="logo"><a href="index.php"><img src="https://images.horrorhound.com/hh2017/layout/HORRORHOUND-white-black-flat-sm.png" alt="Logo" width=200></a></h1>
+            <header>
+				<h1 id="logo"><a href="index.php"><img src="https://images.horrorhound.com/hh2017/layout/HORRORHOUND-white-black-flat-sm.png" alt="Logo" width=200></a></h1>
 			</header>
 			<nav>
 				<ul>
@@ -31,32 +24,20 @@
 					<li><a href="shop.php">Shop</a></li>
 				</ul>
 			</nav>
-			<table>
-				<tr>
-					<th><img src="imgs/stanlee.png" height=300 width=250 alt="8x11 autograph image"></th>
-					<td>
-						<h1>Photos $50.00</h1>
-					</td>
-				</tr>
-				<tr>
-					<th><img src="imgs/poster.jpg" height=300 width=250 alt="signed poster image"></th>
-					<td>
-						<h1>Posters $75.00</h1>
-					</td>
-				</tr>
-				<tr>
-					<th><img src="imgs/comic.jpg" height=300 width=250 alt="signed comic/magazine image"></th>
-					<td>
-						<h1>Comics/Magazines $60.00</h1>
-					</td>
-				</tr>
-				<tr>
-					<th><img src="imgs/funko.png" height=300 width=250 alt="signed figure image"></th>
-					<td>
-						<h1>Figurines $55.00</h1>
-					</td>
-				</tr>
-			</table>
+            <?php
+                $mysqli = new mysqli("localhost","sheldoij_admin","Cattachmate5%","sheldoij_Semester_Project");
+                if ($mysqli -> connect_errno) {
+                  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+                  exit();
+                }
+                
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+                
+                $sql = 'INSERT INTO Login VALUES("' . $username . '","' . $password . '")';
+                $result = $mysqli->query($sql);
+                echo "Account Created, " . $username . " has been logged in!";
+            ?>
 		<footer>
 			Copyright &copy; 2023 HorrorHound Weekend<br /><a href="mailto:support@horrorhound.com">support@horrorhound.com</a><br>
 			<br>Follow Us If you want to be kept up to date about what’s<br> going on, minute by minute, then search for Grant and give us a follow!<br>
@@ -68,3 +49,8 @@
 		</div>
 	</body>
 </html>
+
+
+
+
+

@@ -1,7 +1,23 @@
-﻿<?php
-    $cookie_name = "user";
-    $cookie_value = "Isaac Sheldon";
-    setcookie($cookie_name,$cookie_value,time()+86400,"/");
+<?php
+	$mysqli = new mysqli("localhost","sheldoij_admin","Cattachmate5%","sheldoij_Semester_Project");
+    if ($mysqli -> connect_errno) {
+      echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+      exit();
+    }
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    
+    $sql = 'SELECT * FROM Login WHERE username = "' . $username . '" AND password = "' . $password . '"';
+    $result = $mysqli->query($sql);
+
+    if ($result->num_rows > 0) {
+        $cookie_name = "user";
+        $cookie_value = $_POST["username"];
+        setcookie($cookie_name,$cookie_value,time()+86400,"/");
+        echo '<span style="color:#AFA;text-align:center;">Correct! You have been Logged in!</span>';
+    } else {
+        echo '<span style="color:#FAA;text-align:center;">Incorrect Username/Password!</span>';
+    }  
 ?>
 
 <!DOCTYPE html>
@@ -24,35 +40,7 @@
 					<li><a href="shop.php">Shop</a></li>
 				</ul>
 			</nav>
-			<?php
-				$servername = "localhost";
-				$username = "sheldoij_" . $_POST['username'];
-				$password = $_POST['password'];
-				$databaseName = "sheldoij_Semester_Project";
-				
-				//Create Connection
-				$dbc = mysqli_connect($servername, $username, $password, $databaseName);
-
-				//Check Connection
-				if (mysqli_connect_error()) {
-					die("Connection failed: " . mysqli_connect_error());
-				}
-				echo "Authenitcation Sucessful... Welcome " .$_POST['username'];
-
-			/*	$cookie_name = "user";
-				$cookie_value = $_POST['username'];
-				setcookie($cookie_name,$cookie_value,time()+86400,"/");
-				*/
-			?>
-			
-			<?php
-			/*	if(!isset($_COOKIE[$cookie_name])) {
-					echo "Cookie named '" . $cookie_name . "' is not set!";
-				} else {
-					echo "Cookie '" . $cookie_name . "' is set!<br>";
-					echo "Value is: " . $_COOKIE[$cookie_value];
-				}
-			*/?>
+			 <span id='mes'></span><br>
 		<footer>
 			Copyright &copy; 2023 HorrorHound Weekend<br /><a href="mailto:support@horrorhound.com">support@horrorhound.com</a><br>
 			<br>Follow Us If you want to be kept up to date about what’s<br> going on, minute by minute, then search for Grant and give us a follow!<br>
