@@ -1,0 +1,112 @@
+header { background-color: #151515;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: white;
+	}
+	
+h1 { font-family: 'Roboto Slab'; font-size: 32px; }
+
+body { color: #000000;
+	font-family: Arial, Tahoma, sans-serif; 
+	background-image: url("imgs/Wall.jpg"); }
+
+#wrapper { width: 80%;
+	background-color: #FFFFFF;
+	margin-right: auto;
+	margin-left: auto;
+	min-width: 900px;
+	max-width: 1280px;
+	box-shadow: 5px 5px 5px 5px #828282; 
+	position:static; }
+	
+.form { text-align: center;
+	padding: 10px; }
+
+.db { display: block;
+  margin-left: auto;
+  margin-right: auto; 
+  padding-bottom: 20px; }
+  
+.text { text-align: center; }
+	
+.mainimg { display: flex;
+	justify-content: center;
+	padding: 5px;}
+	
+footer { background-color: #151515;
+	color: #eee;
+	font-size: small;
+	font-style: italic;
+	text-align: center; 
+	padding: 1em; 
+	border-top: solid 2px #000000; }
+	
+footer a:link { color: #bbb;}
+footer a:hover { color: #A10F2B; }
+	
+nav { text-align: center;
+	font-size: 1.5em; }
+
+nav a { text-decoration: none; }
+nav a:link { color: #333333; }
+nav a:visited { color: #333333; }
+nav a:hover { color: #A00000; }
+
+nav ul { list-style-type: none;
+	padding: .5em;
+	display: flex; 
+	flex-direction: row; 
+	flex-wrap: nowrap;
+	margin: 0;
+	font-size: 1.25em; 
+	text-align: center;
+	justify-content: space-around; }
+	
+main p { padding-left: 2em;
+	padding-right: 2em;
+	padding-top: 2em;
+	text-align: left;}
+	
+h3{ text-align: center; 
+	padding-top: 1em;}
+
+ul{ text-align: center; 
+	list-style-type: none;}
+	
+#addy {text-align: right; 
+	padding: 1em 1.5em 0em 1em;}
+	
+table{ padding: 2em; }
+table td { padding-left: 1em; }
+
+.podcast { padding-left:50px; }
+
+#login {
+	display: inline-block;
+	float:left;
+	color: red;
+	padding-left: 20px;
+	padding-top: 20px;
+}
+#logo {
+	text-align: center;
+}
+#logout {
+	display: inline-block;
+	float:right;
+	padding-right:20px;
+	padding-top:20px;
+	color: red;
+	/*display:none;*/
+}
+#logoutMes {
+	text-align: center;
+	padding: 20px;
+}
+#loginForm{
+	text-align:center;
+	padding:50px;
+}
+#nameTemplate {
+	/*display:none;*/
+}
