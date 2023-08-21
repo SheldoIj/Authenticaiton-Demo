@@ -39,10 +39,30 @@
                     <label for="delete">Delete</label><br><br>
                 </div>
                 
-				<input type="text" name="customerName" placeholder="Name">&emsp;
+				<input type="text" id="customerName" name="customerName" placeholder="Name">&emsp;
 				<input type="text" id ="itemDesc" name="itemDesc" placeholder="Item Desc">&emsp;
-                <input type="submit" value="Submit" name="submit"> <!-- assign a name for the button -->
+                <input type="submit" id="submit" value="Submit" name="submit">
             </form>
+			<script>
+			    if (document.cookie.indexOf('user')<0) {
+			        document.getElementById('view').disabled = true;
+                    document.getElementById('add').disabled = true;
+                    document.getElementById('update').disabled = true;
+                    document.getElementById('delete').disabled = true;
+                    document.getElementById('customerName').disabled = true;
+                    document.getElementById('itemDesc').disabled = true;
+                    document.getElementById('submit').disabled = true;
+			    } else {
+			        document.getElementById('view').disabled = false;
+                    document.getElementById('add').disabled = false;
+                    document.getElementById('update').disabled = false;
+                    document.getElementById('delete').disabled = false;
+                    document.getElementById('customerName').disabled = false;
+                    document.getElementById('itemDesc').disabled = false;
+                    document.getElementById('submit').disabled = false;
+			    }
+			</script>
+            
             <?php
                 if(isset($_POST['submit'],$_POST['view'])) {
                    display();
@@ -59,7 +79,13 @@
                 
                 function display() {
                     $mysqli = new mysqli("localhost","sheldoij_admin","Cattachmate5%","sheldoij_Semester_Project");
-				    $sql = 'SELECT * FROM Authenitcate WHERE Name LIKE "' .$_POST["customerName"]. '"';
+                    
+                    if (empty($_POST["customerName"])) {
+                        $sql = 'SELECT * FROM Authenitcate';
+                    } else {
+    				    $sql = 'SELECT * FROM Authenitcate WHERE Name LIKE "' .$_POST["customerName"]. '"';
+                    }
+                    
                     $result = $mysqli->query($sql);
                     echo"&emsp;&emsp;&emsp;&emsp;&emsp;Name&emsp;  |  &emsp;Date&emsp;  | &emsp;Item Description&emsp; | &emsp;Item ID&emsp;  <br>";
                     echo"&emsp;------------------------------------------------------------------------------------<br>";
@@ -78,19 +104,21 @@
                     $mysqli = new mysqli("localhost","sheldoij_admin","Cattachmate5%","sheldoij_Semester_Project");
 				    $sql = 'INSERT INTO Authenitcate (Name,Item) VALUES ("' .$_POST["customerName"]. '","' .$_POST["itemDesc"] .'")';
                     $result = $mysqli->query($sql);
+                    echo "Record Successfully Added To Database!";
                 }
                 
                 function update() {
                     $mysqli = new mysqli("localhost","sheldoij_admin","Cattachmate5%","sheldoij_Semester_Project");
 				    $sql = 'UPDATE Authenitcate SET Name="' .$_POST["customerName"]. '",Item="' .$_POST["itemDesc"]. '" WHERE Name LIKE "' .$_POST["customerName"]. '";';
-				    //$sql = 'UPDATE Authenitcate SET Name="' .$_POST["customerName"]. '",Item="' .$_POST["itemDesc"]. '" WHERE Name= "' .$_POST["customerName"]. '";';
                     $result = $mysqli->query($sql);
+                    echo "Record ". $_POST[customerName] . " Has Been Updated!";
                 }
                 
                 function delete() {
                     $mysqli = new mysqli("localhost","sheldoij_admin","Cattachmate5%","sheldoij_Semester_Project");
 				    $sql = 'DELETE FROM Authenitcate WHERE Name LIKE "' .$_POST["customerName"]. '"';
                     $result = $mysqli->query($sql);
+                    echo "Record ". $_POST[customerName] . " Has Been Deleted!";
                 }
                 
             ?>
@@ -128,6 +156,7 @@
             </script>
 			<footer>
 		    <p>*Notice*</p>
+		    <p>You must be logged in to access any functionality on the "Search" page.</p>
 		    <p>You can only Update the Item Description when given correct name.</p>
 				Copyright &copy; 2023 HorrorHound Weekend<br /><a href="mailto:support@horrorhound.com">support@horrorhound.com</a><br>
 				<br>Follow Us If you want to be kept up to date about what’s<br> going on, minute by minute, then search for Grant and give us a follow!<br>
